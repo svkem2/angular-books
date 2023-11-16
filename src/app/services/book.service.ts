@@ -16,7 +16,7 @@ export class BookService {
 
   getBookListByCategory(thePage: number, thePageSize: number, category: string): Observable<GetResponse> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryContaining?category=${category}&page=${thePage}&size=${thePageSize}`;
-    console.log('-------------' + searchUrl);
+    console.log('***Search URL: ' + searchUrl);
     return this.httpClient.get<GetResponse>(searchUrl);
   }
 
@@ -57,7 +57,7 @@ export class BookService {
   getBook(bookId: number): Observable<Book> {
     const bookUrl = `${this.baseUrl}/${bookId}`;
     const imagesUrl = `${bookUrl}/images`; // Assuming this is your endpoint for fetching book images
-    console.log("Getting Images  imagesURL: " + imagesUrl);
+    console.log("***Getting Images  imagesURL: " + imagesUrl);
 
     const book$ = this.httpClient.get<Book>(bookUrl);
     const images$ = this.httpClient.get<BookImage[]>(imagesUrl);
@@ -69,7 +69,7 @@ export class BookService {
   }
 
   updateBook(bookId: number, updatedBook: Book) {
-    console.log("Updating Book - " + JSON.stringify(updatedBook));
+    console.log("***Updating Book - " + JSON.stringify(updatedBook));
     return this.httpClient.put(`${this.baseUrl}/${bookId}`, updatedBook);
   }
   deleteImage(bookId: number, imageId: number): Observable<void> {
