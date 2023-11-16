@@ -1,0 +1,29 @@
+:host ::ng-deep .mat-mdc-cell.key-column,
+:host ::ng-deep .mat-cell.key-column {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+:host ::ng-deep .mat-mdc-cell.value-column,
+:host ::ng-deep .mat-cell.value-column {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 90% !important;
+    width: 90% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}

@@ -1,0 +1,43 @@
+<!-- Import Angular Material CSS styles -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Import MatGridListModule in your module -->
+
+<div class="detail-section" style="padding-top: 50px !important;">
+    <button class="btn btn-primary" (click)="navigateToEditPage(book.id)">Edit Book</button>
+    <div class="container-fluid">
+
+        <!-- Book Details -->
+        <mat-table [dataSource]="bookDetailsDataSource">
+
+            <ng-container matColumnDef="property">
+                <mat-header-cell *matHeaderCellDef> Property </mat-header-cell>
+                <mat-cell *matCellDef="let detail"> {{ detail.property }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+                <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+                <mat-cell *matCellDef="let detail"> {{ detail.value }} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <!-- Book Images Gallery -->
+        <mat-grid-list cols="3" rowHeight="300px"> <!-- Adjust the number of cols and rowHeight as needed -->
+            <mat-grid-tile *ngFor="let image of bookImages">
+                <mat-card>
+                    <img mat-card-image [src]="image.imageUrl" alt="Book Image">
+                    <mat-card-actions>
+                        <button mat-button (click)="editImage(image)">Edit</button>
+                        <button mat-button (click)="deleteImage(image)">Delete</button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <button class="btn btn-primary" (click)="navigateToEditPage(book.id)">Edit Book</button>
+        <a routerLink="/books" class="mt-5">Back to Books</a>
+    </div>
+</div>

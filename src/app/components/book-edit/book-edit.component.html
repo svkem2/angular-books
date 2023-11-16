@@ -1,0 +1,96 @@
+<!-- Import Angular Material CSS styles -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Other imports and styles -->
+
+<div class="detail-section" style="padding-top: 50px !important;">
+  <div class="container-fluid">
+    <div class="container d-flex justify-content-center">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Left Column - Previous Book Button -->
+          <button mat-button class="btn btn-primary btn-block" (click)="goToPreviousBook()">Previous Book</button>
+        </div>
+        <div class="col-md-4">
+          <!-- Middle Column - Update Book Button -->
+          <button mat-button class="btn btn-success btn-block" (click)="updateBook()">Update Book</button>
+        </div>
+        <div class="col-md-4">
+          <!-- Right Column - Next Book Button -->
+          <button mat-button class="btn btn-primary btn-block" (click)="goToNextBook()">Next Book</button>
+        </div>
+      </div>
+    </div>
+    
+      <mat-table [dataSource]="bookForm.controls | keyvalue" class="mat-elevation-z8">
+        <ng-container matColumnDef="key">
+          <mat-header-cell *matHeaderCellDef class="key-column"></mat-header-cell>
+          <mat-cell *matCellDef="let detail" class="key-column"> {{ detail.key }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+          <mat-header-cell *matHeaderCellDef class="value-column"></mat-header-cell>
+          <mat-cell *matCellDef="let detail" class="value-column">
+            <ng-container *ngIf="isEditable(getFormControl(detail.key))">
+              <textarea rows="10" *ngIf="detail.key === 'description'" [formControl]="getFormControl(detail.key)"
+                class="form-control auto-resize-textarea" #autoResizeTextarea></textarea>
+              <input *ngIf="detail.key !== 'description'" [formControl]="getFormControl(detail.key)"
+                class="form-control">
+            </ng-container>
+            <ng-container *ngIf="!isEditable(getFormControl(detail.key))">
+              <!-- Display non-editable book description -->
+              <div *ngIf="detail.key === 'description'" class="book-description">
+                {{ detail.value }}
+              </div>
+              <!-- Display other non-editable values -->
+              <div *ngIf="detail.key !== 'description'">
+                {{ detail.value }}
+              </div>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-row *matRowDef="let row; columns: ['key', 'value']"></mat-row>
+      </mat-table>
+      <div class="container d-flex justify-content-center">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Left Column - Previous Book Button -->
+            <button mat-button class="btn btn-primary btn-block" (click)="goToPreviousBook()">Previous Book</button>
+          </div>
+          <div class="col-md-4">
+            <!-- Middle Column - Update Book Button -->
+            <button mat-button class="btn btn-success btn-block" (click)="updateBook()">Update Book</button>
+          </div>
+          <div class="col-md-4">
+            <!-- Right Column - Next Book Button -->
+            <button mat-button class="btn btn-primary btn-block" (click)="goToNextBook()">Next Book</button>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+
+
+
+    <hr>
+
+    <!-- Book Images Gallery -->
+    <mat-grid-list cols="3" rowHeight="300px">
+      <mat-grid-tile *ngFor="let image of bookImages">
+        <mat-card>
+          <img mat-card-image [src]="image.imageUrl" alt="Book Image">
+          <mat-card-actions>
+            <button mat-button (click)="deleteImage(image)">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <a routerLink="/books" class="mt-5">Back to Books</a>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- loop over the collection of products -->
+                <div *ngFor="let book of books" class="col-md-3">
+
+                    <div class="product-box">
+                        <a [routerLink]="'/books/' + book.id">
+                            <img src="{{ book.imageUrl }}" class="img-responsive">
+                        </a>
+                        <a [routerLink]="'/books/' + book.id">
+                            <h1>{{ book.title }}</h1>
+                        </a>
+                        
+                          
+                        <p>Author: {{ book.author }}</p>
+                        <p>Publisher: {{ book.publisher }}, {{ book.publicationYear }}</p>
+                        <p>{{ book.category }}</p>
+                        <!-- <div [innerHTML]="book.description | truncate:2"></div> -->
+                        <p>Stock {{ book.quantityInStock }}</p>
+
+                        <div class="price">{{ book.price | currency:'R' }}</div>
+                    </div>
+
+                </div>
+
+                <!-- if no book found -->
+                <div *ngIf="books?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    Sorry, no publications found!
+                </div>
+            </div>
+            <!-- begin footer -->
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-6"></div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-9" style="padding-left: 30%">
+
+                                <ngb-pagination [(page)]="thePageNumber" [pageSize]="thePageSize"
+                                    [collectionSize]="theTotalElements" [maxSize]="5" (pageChange)="listBooks()">
+
+                                </ngb-pagination>
+
+                            </div>
+
+                            <!-- <div class="col-md-3 mt-2" style="text-align: right;">
+                                <span class="mr-2">Page Size</span>
+
+                                <select #myPageSelect (change)="updatePageSize(myPageSelect.value)">
+                                    <option>2</option>
+                                    <option selected="true">5</option>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>50</option>
+                                </select>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+    </div>
+</div>
