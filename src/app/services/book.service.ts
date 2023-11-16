@@ -43,7 +43,7 @@ export class BookService {
     const searchUrl = `${this.baseUrl}`
       + `?page=${thePage}&size=${thePageSize}`;
 
-    console.log("****************88888Trying paginat at " + searchUrl);
+    console.log("***Trying paginate at " + searchUrl);
 
     return this.httpClient.get<GetResponse>(searchUrl);
   }
@@ -57,7 +57,7 @@ export class BookService {
   getBook(bookId: number): Observable<Book> {
     const bookUrl = `${this.baseUrl}/${bookId}`;
     const imagesUrl = `${bookUrl}/images`; // Assuming this is your endpoint for fetching book images
-    console.log("Getting Images $$$$$$$$$$$$$$$ imagesURL: " + imagesUrl);
+    console.log("Getting Images  imagesURL: " + imagesUrl);
 
     const book$ = this.httpClient.get<Book>(bookUrl);
     const images$ = this.httpClient.get<BookImage[]>(imagesUrl);
