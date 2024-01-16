@@ -21,6 +21,7 @@ export class BookEditComponent implements OnInit {
   bookImages: BookImage[] = [];
   displayedColumns: string[] = ['property', 'value'];
   bookDetailsDataSource!: MatTableDataSource<any>;
+  image!: BookImage;
 
   constructor(
     private bookService: BookService,
@@ -65,7 +66,9 @@ export class BookEditComponent implements OnInit {
 
       // Update relative URLs to point to the assets folder
       this.bookImages.forEach(image => {
+
         image.imageUrl = `assets/images/books/${image.imageUrl}`;
+        
       });
     });
   }

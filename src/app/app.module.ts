@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 const routes: Routes = [
   { path: 'books/:id', component: BookDetailsComponent },
@@ -31,6 +33,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     BookListComponent,

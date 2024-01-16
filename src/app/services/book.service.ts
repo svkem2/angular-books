@@ -72,6 +72,7 @@ export class BookService {
     console.log("***Updating Book - " + JSON.stringify(updatedBook));
     return this.httpClient.put(`${this.baseUrl}/${bookId}`, updatedBook);
   }
+  
   deleteImage(bookId: number, imageId: number): Observable<void> {
     const url = `${this.baseUrl}/${bookId}/images/${imageId}`;
     return this.httpClient.delete<void>(url);

@@ -8,11 +8,11 @@
     <div class="container-fluid">
 
         <!-- Book Details -->
-        <mat-table [dataSource]="bookDetailsDataSource">
+        <mat-table [dataSource]="bookDetailsDataSource" fixedLayout="true">
 
             <ng-container matColumnDef="property">
                 <mat-header-cell *matHeaderCellDef> Property </mat-header-cell>
-                <mat-cell *matCellDef="let detail"> {{ detail.property }} </mat-cell>
+                <mat-cell id="tblPropertyName" fxFlex="100px" *matCellDef="let detail"> {{ detail.property }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="value">

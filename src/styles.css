@@ -826,6 +826,12 @@ table.table.table-bordered th {
     margin-left: 5px
 }
 
+#tblPropertyName {
+    width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 /* 
  * ----------------------------
  * Product Details
